@@ -1,10 +1,13 @@
-import { Module } from '@nestjs/common';
-import { CoffeesController } from './coffees.controller';
-import { CoffeesService } from './coffees.service';
+import { Module } from "@nestjs/common";
+import { CoffeesController } from "./coffees.controller";
+import { CoffeesService } from "./coffees.service";
+import { Coffee } from "./entities/coffee.entity";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { Flavor } from "./entities/flavor.entity";
 
-@Module({controllers: [CoffeesController], providers: [CoffeesService]})
-export class CoffeesModule {
-
-
-
-}
+@Module({
+  imports: [TypeOrmModule.forFeature([Coffee, Flavor, Event])],
+  controllers: [CoffeesController],
+  providers: [CoffeesService],
+})
+export class CoffeesModule {}
